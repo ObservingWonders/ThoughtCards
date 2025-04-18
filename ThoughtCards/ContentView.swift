@@ -5,6 +5,13 @@
 //  Created by Kevin Oberhausen on 4/18/25.
 //
 
+//
+//  ContentView.swift
+//  ThoughtCards
+//
+//  Created by Kevin Oberhausen on 4/18/25.
+//
+
 import SwiftUI
 
 struct ContentView: View {
@@ -58,8 +65,8 @@ struct ContentView: View {
                     }
                 }
                 .navigationTitle("Documents")
-                .toolbar {
-                    ToolbarItem {
+                .toolbar(id: "documentToolbar") {
+                    ToolbarItem(id: "newDocument", placement: .automatic) {
                         Button(action: {
                             showingNewDocumentDialog = true
                         }) {
@@ -121,7 +128,7 @@ struct ContentView: View {
                 }
             }
             .frame(width: 300)
-            .background(Color(.systemGray6))
+            .background(Color(.windowBackgroundColor))
         }
         .sheet(isPresented: $showingNewDocumentDialog) {
             NewDocumentView(isPresented: $showingNewDocumentDialog, appData: appData)
@@ -215,7 +222,7 @@ struct CardView: View {
             .padding(.horizontal, 8)
             .padding(.bottom, 8)
         }
-        .background(Color(.systemBackground))
+        .background(Color(.textBackgroundColor))
         .cornerRadius(8)
         .shadow(radius: isDragging ? 5 : 1)
         .scaleEffect(isDragging ? 1.05 : 1.0)
@@ -257,7 +264,7 @@ struct DocumentGridItem: View {
                     .multilineTextAlignment(.center)
             }
             .frame(width: 120, height: 120)
-            .background(Color(.systemGray6))
+            .background(Color(.windowBackgroundColor))
             .cornerRadius(10)
             .shadow(radius: isHovered ? 5 : 1)
             .scaleEffect(isHovered ? 1.05 : 1.0)
